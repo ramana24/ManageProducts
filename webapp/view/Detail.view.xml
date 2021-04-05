@@ -1,0 +1,139 @@
+<mvc:View
+	controllerName="ux.viewproducts.controller.Detail"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc">
+
+	<semantic:SemanticPage
+		id="detailPage"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title
+				text="{CustomerID}"
+				level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ObjectAttribute title="{i18n>priceTitle}"/>
+			<ObjectNumber
+				id="objectHeaderNumber"
+				number="{
+					path: 'GrossAmount',
+					formatter: '.formatter.currencyValue'
+				}"
+				unit="{DeliveryStatusDescription}"
+			/>
+		</semantic:headerContent>
+		<semantic:content>
+			<Table
+				id="lineItemsList"
+				width="auto"
+				items="{/BusinessPartnerSet}"
+				updateFinished=".onListUpdateFinished"
+				noDataText="{i18n>detailLineItemTableNoDataText}"
+				busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							id="lineItemsTitle"
+							text="{detailView>/lineItemListTitle}"
+							titleStyle="H3"
+							level="H3"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>detailLineItemTableIDColumn}"/>
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="End">
+						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+					</Column>
+
+					<!-- ctrl + /   New supplier columns -->
+					<Column>
+						<Text text="{i18n>WebAddress}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>EmailAddress}"/>
+					</Column>
+					
+					<Column>
+						<Text text="{i18n>PhoneNumber}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>FaxNumber}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>LegalForm}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>CurrencyCode}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>BusinessPartnerRole}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>CreatedAt}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>ChangedAt}"/>
+					</Column>
+
+						<!-- ctrl + /   End supplier columns -->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier
+								title="{Address}"
+								text="{BusinessPartnerID}"/>
+							<ObjectNumber
+								unit="{WebAddress}"/>
+
+								<Text text="{WebAddress}"></Text>
+									<Text text="{EmailAddress}"></Text>
+										<Text text="{PhoneNumber}"></Text>
+											<Text text="{FaxNumber}"></Text>
+												<Text text="{LegalForm}"></Text>
+													<Text text="{CurrencyCode}"></Text>
+														<Text text="{BusinessPartnerRole}"></Text>
+															<Text text="{CreatedAt}"></Text>
+																<Text text="{ChangedAt}"></Text>
+																	
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<!--Semantic ShareMenu Buttons-->
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:closeAction>
+			<semantic:CloseAction
+					id="closeColumn"
+					press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+					id="enterFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction
+					id="exitFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+
+	</semantic:SemanticPage>
+
+</mvc:View>
