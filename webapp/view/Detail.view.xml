@@ -1,6 +1,8 @@
 <mvc:View
 	controllerName="ux.viewproducts.controller.Detail"
 	xmlns="sap.m"
+		xmlns:core="sap.ui.core"
+	xmlns:micro="sap.suite.ui.microchart"
 	xmlns:semantic="sap.f.semantic"
 	xmlns:mvc="sap.ui.core.mvc">
 
@@ -9,12 +11,33 @@
 		busy="{detailView>/busy}"
 		busyIndicatorDelay="{detailView>/delay}">
 		<semantic:titleHeading>
-			<Title
+			<!-- <Title id="IdPartner"
 				text="{CustomerID}"
-				level="H2"/>
+				level="H2"/> -->
+<!-- New Object Header -->
+<ObjectHeader
+		
+		icon="sap-icon://product"
+		iconDensityAware="false"
+		iconAlt="ProductImage"
+		title="{CustomerID}"
+		
+		class="sapUiResponsivePadding--header" >
+		<statuses>
+			<ObjectStatus
+				text="{BillingStatusDescription}"
+				state="Success" />
+		</statuses>
+		 <ObjectAttribute  text="{NetAmount}{CurrencyCode} " />
+		<ObjectAttribute text="{Note} , {CustomerName} " />
+		<ObjectAttribute text="{LifecycleStatusDescription},{BillingStatusDescription},{DeliveryStatusDescription}" /> 
+	</ObjectHeader> 
+
+	<!-- End of new header -->
+
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<ObjectAttribute title="{i18n>priceTitle}"/>
+			 <ObjectAttribute title="{i18n>priceTitle}"/>
 			<ObjectNumber
 				id="objectHeaderNumber"
 				number="{
@@ -22,10 +45,26 @@
 					formatter: '.formatter.currencyValue'
 				}"
 				unit="{DeliveryStatusDescription}"
-			/>
+			/> 
+
+			
 		</semantic:headerContent>
 		<semantic:content>
-			<Table
+
+
+			<IconTabBar
+		id="idIconTabBar"
+		select=".onFilterSelect"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				icon="sap-icon://supplier"
+				iconColor="Positive"
+				design="Horizontal"
+				
+				text="Supplier"
+				key="Ok" >
+<Table
 				id="lineItemsList"
 				width="auto"
 				items="{/BusinessPartnerSet}"
@@ -88,12 +127,17 @@
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier
-								title="{Address}"
-								text="{BusinessPartnerID}"/>
+								title="{BusinessPartnerID}"
+								text="{Address/City}"/>
 							<ObjectNumber
-								unit="{WebAddress}"/>
+								unit="{CompanyName}"/>
 
-								<Text text="{WebAddress}"></Text>
+								<!-- <Text text="{WebAddress}"></Text> -->
+
+								<Link
+						text="CompanyName"
+						emphasized="true"
+						href="{WebAddress}" />
 									<Text text="{EmailAddress}"></Text>
 										<Text text="{PhoneNumber}"></Text>
 											<Text text="{FaxNumber}"></Text>
@@ -107,6 +151,68 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+
+				</IconTabFilter>
+			<IconTabSeparator icon="sap-icon://open-command-field" />
+			<IconTabFilter
+				icon="sap-icon://shipping-status"
+				iconColor="Critical"
+				design="Horizontal"
+			
+				text="Delivery Status"
+				key="Heavy" >
+
+		<Title level="H3" text="Shipping Progress" />		
+<HBox> 
+
+	
+				<Label  text="Order Received"></Label>
+					<micro:RadialMicroChart size="Responsive" height="18px" percentage="100%" valueColor="{TargetDoneColor}" press="press" total="{Target}"/>
+				
+					<core:Icon class="sapUiTinyMarginBeginEnd size1"
+			src="sap-icon://step"
+	
+			color="#031E48" >
+			
+		</core:Icon>
+			
+					<Label class="sapUiTinyMarginBegin" text="Supplier Confirmation"></Label>
+					<micro:RadialMicroChart size="Responsive" height="18px" percentage="60%" valueColor="{TargetDoneColor}" press="press" total="{Target}"/>
+<core:Icon class="sapUiTinyMarginBeginEnd size1"
+			src="sap-icon://step"
+		
+			color="#031E48" >
+			<core:layoutData>
+				<FlexItemData growFactor="1" />
+			</core:layoutData>
+		</core:Icon>
+
+						<Label text="Warehouse Arrived"></Label>
+					<micro:RadialMicroChart size="Responsive" height="18px" percentage="60%" valueColor="{TargetDoneColor}" press="press" total="{Target}"/>
+
+<core:Icon class="sapUiTinyMarginBeginEnd size1"
+			src="sap-icon://step"
+		
+			color="#031E48" >
+			<core:layoutData>
+				<FlexItemData growFactor="1" />
+			</core:layoutData>
+		</core:Icon>
+						<Label text="Delivery Status"></Label>
+					<micro:RadialMicroChart size="Responsive" height="18px" percentage="60%" valueColor="{TargetDoneColor}" press="press" total="{Target}"/>
+				</HBox>
+				</IconTabFilter>
+			<IconTabSeparator icon="sap-icon://open-command-field" />
+			<IconTabFilter
+				icon="sap-icon://person-placeholder"
+				iconColor="Negative"
+				design="Horizontal"
+				
+				text="Customer Details"
+				key="Overweight" />
+		</items>
+	</IconTabBar>
+			
 		</semantic:content>
 		<!--Semantic ShareMenu Buttons-->
 		<semantic:sendEmailAction>

@@ -22,8 +22,13 @@ sap.ui.define([
 
 var serviceurl="/sap/opu/odata/iwbep/GWSAMPLE_BASIC/";
 var oModel= new ODataModel(serviceurl);
- this.getView().byId("lineItemsList").setModel(oModel);
+this.getView().byId("lineItemsList").setModel(oModel);
 
+// this.getView().byId("detailPage").setModel(oModel);
+
+// this.getView().byId("IdPartner").bindElement("/BusinessPartnerSet");
+
+  //this.getView().byId("IdPartner").bindProperty("BusinessPartnerID");
 
 
 			// Model used to manipulate control states. The chosen values make sure,
