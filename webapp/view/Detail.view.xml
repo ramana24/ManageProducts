@@ -1,6 +1,7 @@
 <mvc:View
 	controllerName="ux.viewproducts.controller.Detail"
 	xmlns="sap.m"
+		xmlns:grid="sap.ui.table"
 		xmlns:core="sap.ui.core"
 	xmlns:micro="sap.suite.ui.microchart"
 	xmlns:semantic="sap.f.semantic"
@@ -209,7 +210,167 @@
 				design="Horizontal"
 				
 				text="Customer Details"
-				key="Overweight" />
+				key="customer" >
+				
+							<grid:Table
+									rows="{/SalesOrderLineItemSet}"
+									selectionMode="MultiToggle"
+									visibleRowCount="4"
+									alternateRowColors="true"
+									columnHeaderVisible="true"
+									paste="onPaste"
+									ariaLabelledBy="title">
+										<grid:extension>
+											<OverflowToolbar style="Clear">
+												<Title id="maintitle" text="Customer Information"/>
+											</OverflowToolbar>
+										</grid:extension>
+
+										<grid:columns>
+												<grid:Column width="11rem">
+													<Label text="ID" />
+													<grid:template>
+														<Text text="{SalesOrderID}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="Product" />
+													<grid:template>
+														<Text text="{ProductID}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="Product Description" />
+													<grid:template>
+														<Text text="{Note}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="Total Cost" />
+													<grid:template>
+														<Text text="{GrossAmount}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="MRP" />
+													<grid:template>
+														<Text text="{NetAmount}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="GST" />
+													<grid:template>
+														<Text text="{TaxAmount}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="Shipping Date" />
+													<grid:template>
+														<Text text="{DeliveryDate}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="QTY" />
+													<grid:template>
+														<Text text="{Quantity}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="QTY Unit" />
+													<grid:template>
+														<Text text="{QuantityUnit}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												
+
+										</grid:columns>
+
+
+
+
+							</grid:Table>
+
+							<grid:Table id="subtable"
+									rows="{/SalesOrderLineItemSet}"
+									selectionMode="MultiToggle"
+									visibleRowCount="4"
+									enableCellFilter="true"
+									alternateRowColors="true"
+									columnHeaderVisible="false"
+									paste="onPaste"
+									ariaLabelledBy="title">
+										<grid:extension>
+											<OverflowToolbar style="Clear">
+												<Title id="title" text="Supplier Information"/>
+											</OverflowToolbar>
+										</grid:extension>
+
+										<grid:columns>
+												<grid:Column width="11rem" filterProperty="SalesOrderID">
+													<Label text="ID" />
+													<grid:template>
+														<Text text="{SalesOrderID}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem" filterProperty="ProductID">
+													<Label text="Product" />
+													<grid:template>
+														<Text text="{ProductID}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem"  filterProperty="Note">
+													<Label text="Product Description" />
+													<grid:template>
+														<Text text="{Note}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="Total Cost" />
+													<grid:template>
+														<Text text="{GrossAmount}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="MRP" />
+													<grid:template>
+														<Text text="{NetAmount}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="GST" />
+													<grid:template>
+														<Text text="{TaxAmount}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="Shipping Date" />
+													<grid:template>
+														<Text text="{DeliveryDate}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="QTY" />
+													<grid:template>
+														<Text text="{Quantity}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												<grid:Column width="11rem">
+													<Label text="QTY Unit" />
+													<grid:template>
+														<Text text="{QuantityUnit}" wrapping="false" />
+													</grid:template>
+											    </grid:Column>
+												
+
+										</grid:columns>
+
+
+
+
+							</grid:Table>
+				
+				
+				</IconTabFilter>
 		</items>
 	</IconTabBar>
 			
