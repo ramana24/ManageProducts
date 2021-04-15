@@ -7,12 +7,13 @@
 		confirm=".onConfirmViewSettingsDialog">
 		<sortItems>
 			<ViewSettingsItem
-				text="{i18n>masterSort1}"
+				text="CustomerID"
 				key="CustomerID"
 				selected="true"/>
 			<ViewSettingsItem
-				text="{i18n>masterSort2}"
+				text="GrossAmount"
 				key="GrossAmount"/>
+					
 		</sortItems>
 		<filterItems>
 			<ViewSettingsFilterItem
@@ -33,7 +34,7 @@
 		</filterItems>
 		<groupItems>
 			<ViewSettingsItem
-				text="{i18n>masterGroup1}"
+				text="GrossAmount"
 				key="GrossAmount"/>
 		</groupItems>
 	</ViewSettingsDialog>

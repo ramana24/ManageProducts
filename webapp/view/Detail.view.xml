@@ -27,7 +27,7 @@
 		<statuses>
 			<ObjectStatus
 				text="{BillingStatusDescription}"
-				state="Success" />
+				state="Warning" />
 		</statuses>
 		 <ObjectAttribute  text="{NetAmount}{CurrencyCode} " />
 		<ObjectAttribute text="{Note} , {CustomerName} " />
@@ -59,12 +59,13 @@
 		class="sapUiResponsiveContentPadding">
 		<items>
 			<IconTabFilter
-				icon="sap-icon://supplier"
+				icon="sap-icon://accept"
 				iconColor="Positive"
 				design="Horizontal"
 				
 				text="Supplier"
 				key="Ok" >
+
 <Table
 				id="lineItemsList"
 				width="auto"
@@ -152,7 +153,6 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-
 				</IconTabFilter>
 			<IconTabSeparator icon="sap-icon://open-command-field" />
 			<IconTabFilter
